@@ -1,0 +1,10 @@
+body {
+  background-color: #ccc; }
+body {
+  height: 25rem;
+}
+.app-wrap {
+  border: 0.125rem solid #000;
+  width: 12.5rem;
+  background: green;
+}
