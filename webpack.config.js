@@ -1,10 +1,13 @@
 var webpack = require('webpack');
 var cleanWebpackPlugin = require('clean-webpack-plugin');
 var ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
+var purifyCss = require('purifycss-webpack');
+var glob = require('glob');
+var path = require('path');
 
 module.exports = {
 	entry: {
-		index: "./src/main.jsx"
+		index: "./src/root.jsx"
 	},
 	output: {
 		filename: "[name].js",
@@ -13,7 +16,7 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.jsx?/,
+				test: /\.jsx?/, 
 				use: [
 					{
 						loader: "babel-loader",
@@ -25,7 +28,19 @@ module.exports = {
 				exclude: /node_modules/
 			},
 			{
-				test: /\.scss/,
+				test: /\.css/, 
+				use: ExtractTextWebpackPlugin.extract({
+                    fallback:'style-loader',
+                    use: [
+						{
+							loader: "css-loader"
+						}
+                    ]
+                })
+
+			},
+			{
+				test: /\.scss/, 
 				use: ExtractTextWebpackPlugin.extract({
                     fallback:'style-loader',
                     use: [
@@ -68,6 +83,11 @@ module.exports = {
 	},
 	plugins: [
 		new cleanWebpackPlugin(['dist']),
-		new ExtractTextWebpackPlugin("[name].css")
+		new ExtractTextWebpackPlugin("[name].css"),
+		new purifyCss({
+			paths: glob.sync(
+                path.resolve(__dirname, './+(src/*.jsx | *.html)')          
+            )
+		})
 	]
 }
