@@ -1,2 +1,2 @@
-# webpack-react
-一个基于webpack和react的demo
+# gulp-webpack-react
+一个基于gulp,webpack和react的demo
