@@ -6,6 +6,7 @@ export default class Content extends Component{
     return (
       <div className="header-wrap">
         这是内容
+        <input/>
       </div>
     );
   }
