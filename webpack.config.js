@@ -113,5 +113,19 @@ module.exports = {
             title: '测试页面',
             inject: true
         }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+            },
+            //'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        }),
+        new webpack.optimize.UglifyJsPlugin({//最小化一切,copyright信息
+            output: {
+                comments: false,  // remove all comments
+            },
+            compress: {
+                warnings: false
+            }
+        })
 	]
 }
