@@ -3,6 +3,7 @@ import {route} from 'react-router';
 import Header from './component/header/index';
 import Content from './component/content/index';
 import Footer from './component/footer/index';
+import './main.css';
 
 export default class App extends Component{
   render() {

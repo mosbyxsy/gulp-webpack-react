@@ -3,6 +3,7 @@ var cleanWebpackPlugin = require('clean-webpack-plugin');
 var ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
 var purifyCss = require('purifycss-webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 var glob = require('glob');
 var path = require('path');
 
@@ -51,7 +52,10 @@ module.exports = {
                     fallback:'style-loader',
                     use: [
 						{
-							loader: "css-loader"
+							loader: "css-loader",
+							options: {
+                                minimize: true
+                            }
 						}
                     ]
                 })
@@ -63,7 +67,10 @@ module.exports = {
                     fallback:'style-loader',
                     use: [
 						{
-							loader: "css-loader"
+							loader: "css-loader",
+							options: {
+                                minimize: true
+                            }
 						},
 						{
 							loader: "postcss-loader"
@@ -81,7 +88,10 @@ module.exports = {
                     fallback:'style-loader',
                     use: [
                     	{
-						loader: "css-loader"
+						    loader: "css-loader",
+						    options: {
+                                minimize: true
+                            }
 						},
 						{
 							loader: "postcss-loader"
@@ -102,11 +112,11 @@ module.exports = {
 	plugins: [
 		new cleanWebpackPlugin(['dist']),
 		new ExtractTextWebpackPlugin("[name].css"),
-		new purifyCss({
+		/*new purifyCss({
 			paths: glob.sync(
                 path.resolve(__dirname, './+(src/*.jsx | *.html)')          
             )
-		}),
+		}),*/
 		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
 		    template: "./src/template.html",
@@ -126,6 +136,13 @@ module.exports = {
             compress: {
                 warnings: false
             }
+        }),
+        new OptimizeCssAssetsPlugin({
+            assetNameRegExp: /\.css$/g,
+            cssProcessor: require('cssnano'),
+            cssProcessorOptions: { safe: true, discardComments: { removeAll: true } },
+            canPrint: true
         })
+
 	]
 }
