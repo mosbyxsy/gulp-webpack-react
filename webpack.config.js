@@ -112,11 +112,11 @@ module.exports = {
 	plugins: [
 		new cleanWebpackPlugin(['dist']),
 		new ExtractTextWebpackPlugin("[name].css"),
-		/*new purifyCss({
+		new purifyCss({
 			paths: glob.sync(
-                path.resolve(__dirname, './+(src/*.jsx | *.html)')          
+                path.resolve(__dirname, './src/\*.jsx')          
             )
-		}),*/
+		}),
 		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
 		    template: "./src/template.html",
@@ -146,3 +146,4 @@ module.exports = {
 
 	]
 }
+
