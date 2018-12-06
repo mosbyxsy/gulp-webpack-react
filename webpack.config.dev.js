@@ -6,8 +6,6 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var glob = require('glob');
 var path = require('path');
 
-console.log("123", JSON.stringify(process.env.NODE_ENV))
-
 module.exports = {
 	entry: {
 		index: [
@@ -115,3 +113,4 @@ module.exports = {
 }
 
 
+console.log("123", JSON.stringify(process.env.NODE_ENV))
