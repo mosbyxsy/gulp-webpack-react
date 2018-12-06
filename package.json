@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node_modules/.bin/webpack",
-    "dev": "SET NODE_ENV=production&& webpack-dev-server --config webpack.config.dev.js",
+    "dev": "SET NODE_ENV=development&& webpack-dev-server --config webpack.config.dev.js",
     "pro": "SET NODE_ENV=production&& webpack -p"
   },
   "keywords": [],
