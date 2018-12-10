@@ -103,12 +103,17 @@ module.exports = {
 		]
 	},
 	plugins: [
+	    new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
 		    template: "./src/template.html",
             title: '测试页面',
             inject: true
         }),
+        new webpack.ProvidePlugin({
+            React: "react",
+            ReactDom: "react-dom"
+        })
 	]
 }
 

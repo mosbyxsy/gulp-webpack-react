@@ -142,6 +142,10 @@ module.exports = {
             cssProcessor: require('cssnano'),
             cssProcessorOptions: { safe: true, discardComments: { removeAll: true } },
             canPrint: true
+        }),
+        new webpack.ProvidePlugin({
+            React: "react",
+            ReactDom: "react-dom"
         })
 
 	]
