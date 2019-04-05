@@ -7,18 +7,15 @@ import Footer from './component/footer/index';
 import './root.less';
 
 class App extends Component{
-  render() {
-    return (
-      <div className="app-wrap">
-      	<Header/>
-        <Content/>
-        <Footer/>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="app-wrap">
+                <Header/>
+                <Content/>
+                <Footer/>
+            </div>
+        );
+    }
 }
 
 ReactDom.render(<App />, document.getElementById('root'));
-
-
-

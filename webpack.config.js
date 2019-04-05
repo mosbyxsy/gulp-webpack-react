@@ -15,26 +15,26 @@ module.exports = {
 		path: __dirname + "/dist"
 	},
 	resolve: {
-        extensions: ['.js', '.jsx','.json'],
-    },
-    devServer: {
-        contentBase:false,
-        host: '127.0.0.1',
-        port: '8888',
-        inline: true,//webpack官方推荐
-        watchOptions: {
-            aggregateTimeout: 1000,//浏览器延迟多少秒更新
-            poll: 1000//每秒检查一次变动
-        },
-        compress: false,
-        historyApiFallback: true,//找不到页面默认跳index.html
-        hot: true,//启动热更新，必须搭配new webpack.HotModuleReplacementPlugin()插件
-        open: true
-    },
+		extensions: ['.js', '.jsx','.json'],
+	},
+	devServer: {
+		contentBase:false,
+		host: '127.0.0.1',
+		port: '8888',
+		inline: true,//webpack官方推荐
+		watchOptions: {
+			aggregateTimeout: 1000,//浏览器延迟多少秒更新
+			poll: 1000//每秒检查一次变动
+		},
+		compress: false,
+		historyApiFallback: true,//找不到页面默认跳index.html
+		hot: true,//启动热更新，必须搭配new webpack.HotModuleReplacementPlugin()插件
+		open: true
+	},
 	module: {
 		rules: [
 			{
-				test: /\.jsx?/, 
+				test: /\.jsx?/,
 				use: [
 					{
 						loader: "babel-loader",
@@ -46,22 +46,22 @@ module.exports = {
 				exclude: /node_modules/
 			},
 			{
-				test: /\.css/, 
+				test: /\.css/,
 				use: ExtractTextWebpackPlugin.extract({
-                    fallback:'style-loader',
-                    use: [
+					fallback:'style-loader',
+					use: [
 						{
 							loader: "css-loader"
 						}
-                    ]
-                })
+					]
+				})
 
 			},
 			{
-				test: /\.scss/, 
+				test: /\.scss/,
 				use: ExtractTextWebpackPlugin.extract({
-                    fallback:'style-loader',
-                    use: [
+					fallback:'style-loader',
+					use: [
 						{
 							loader: "css-loader"
 						},
@@ -71,17 +71,17 @@ module.exports = {
 						{
 							loader: "fast-sass-loader"
 						}
-                    ]
-                })
+					]
+				})
 
 			},
 			{
 				test: /\.less/,
 				use: ExtractTextWebpackPlugin.extract({
-                    fallback:'style-loader',
-                    use: [
-                    	{
-						loader: "css-loader"
+					fallback:'style-loader',
+					use: [
+						{
+							loader: "css-loader"
 						},
 						{
 							loader: "postcss-loader"
@@ -94,8 +94,8 @@ module.exports = {
 								}
 							}
 						}
-                    ]
-                })
+					]
+				})
 			}
 		]
 	},
@@ -104,14 +104,14 @@ module.exports = {
 		new ExtractTextWebpackPlugin("[name].css"),
 		new purifyCss({
 			paths: glob.sync(
-                path.resolve(__dirname, './+(src/*.jsx | *.html)')          
-            )
+				path.resolve(__dirname, './+(src/*.jsx | *.html)')
+			)
 		}),
 		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
-		    template: "./src/template.html",
-            title: '测试页面',
-            inject: true
-        }),
+			template: "./src/template.html",
+			title: '测试页面',
+			inject: true
+		}),
 	]
-}
+};

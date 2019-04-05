@@ -4,9 +4,9 @@ import './index.less';
 export default class Footer extends Component{
   render() {
     return (
-      <div className="footer-wrap">
-        这是尾部
-      </div>
+        <div className="footer-wrap">
+          这是尾部
+        </div>
     );
   }
 }
