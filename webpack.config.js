@@ -16,26 +16,26 @@ module.exports = {
 		path: __dirname + "/dist"
 	},
 	resolve: {
-        extensions: ['.js', '.jsx','.json'],
-    },
-    devServer: {
-        contentBase:false,
-        host: '127.0.0.1',
-        port: '8888',
-        inline: true,//webpack官方推荐
-        watchOptions: {
-            aggregateTimeout: 1000,//浏览器延迟多少秒更新
-            poll: 1000//每秒检查一次变动
-        },
-        compress: false,
-        historyApiFallback: true,//找不到页面默认跳index.html
-        hot: true,//启动热更新，必须搭配new webpack.HotModuleReplacementPlugin()插件
-        open: true
-    },
+		extensions: ['.js', '.jsx','.json'],
+	},
+	devServer: {
+		contentBase:false,
+		host: '127.0.0.1',
+		port: '8888',
+		inline: true,//webpack官方推荐
+		watchOptions: {
+			aggregateTimeout: 1000,//浏览器延迟多少秒更新
+			poll: 1000//每秒检查一次变动
+		},
+		compress: false,
+		historyApiFallback: true,//找不到页面默认跳index.html
+		hot: true,//启动热更新，必须搭配new webpack.HotModuleReplacementPlugin()插件
+		open: true
+	},
 	module: {
 		rules: [
 			{
-				test: /\.jsx?/, 
+				test: /\.jsx?/,
 				use: [
 					{
 						loader: "babel-loader",
@@ -47,30 +47,30 @@ module.exports = {
 				exclude: /node_modules/
 			},
 			{
-				test: /\.css/, 
+				test: /\.css/,
 				use: ExtractTextWebpackPlugin.extract({
-                    fallback:'style-loader',
-                    use: [
+					fallback:'style-loader',
+					use: [
 						{
 							loader: "css-loader",
 							options: {
-                                minimize: true
-                            }
+								minimize: true
+							}
 						}
-                    ]
-                })
+					]
+				})
 
 			},
 			{
-				test: /\.scss/, 
+				test: /\.scss/,
 				use: ExtractTextWebpackPlugin.extract({
-                    fallback:'style-loader',
-                    use: [
+					fallback:'style-loader',
+					use: [
 						{
 							loader: "css-loader",
 							options: {
-                                minimize: true
-                            }
+								minimize: true
+							}
 						},
 						{
 							loader: "postcss-loader"
@@ -78,20 +78,20 @@ module.exports = {
 						{
 							loader: "fast-sass-loader"
 						}
-                    ]
-                })
+					]
+				})
 
 			},
 			{
 				test: /\.less/,
 				use: ExtractTextWebpackPlugin.extract({
-                    fallback:'style-loader',
-                    use: [
-                    	{
-						    loader: "css-loader",
-						    options: {
-                                minimize: true
-                            }
+					fallback:'style-loader',
+					use: [
+						{
+							loader: "css-loader",
+							options: {
+								minimize: true
+							}
 						},
 						{
 							loader: "postcss-loader"
@@ -104,8 +104,8 @@ module.exports = {
 								}
 							}
 						}
-                    ]
-                })
+					]
+				})
 			}
 		]
 	},
@@ -114,40 +114,39 @@ module.exports = {
 		new ExtractTextWebpackPlugin("[name].css"),
 		new purifyCss({
 			paths: glob.sync(
-                path.resolve(__dirname, './src/\*.jsx')          
-            )
+				path.resolve(__dirname, './src/\*.jsx')
+			)
 		}),
 		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
-		    template: "./src/template.html",
-            title: '测试页面',
-            inject: true
-        }),
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-            },
-            //'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-        }),
-        new webpack.optimize.UglifyJsPlugin({//最小化一切,copyright信息
-            output: {
-                comments: false,  // remove all comments
-            },
-            compress: {
-                warnings: false
-            }
-        }),
-        new OptimizeCssAssetsPlugin({
-            assetNameRegExp: /\.css$/g,
-            cssProcessor: require('cssnano'),
-            cssProcessorOptions: { safe: true, discardComments: { removeAll: true } },
-            canPrint: true
-        }),
-        new webpack.ProvidePlugin({
-            React: "react",
-            ReactDom: "react-dom"
-        })
+			template: "./src/template.html",
+			title: '测试页面',
+			inject: true
+		}),
+		new webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+			},
+			//'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+		}),
+		new webpack.optimize.UglifyJsPlugin({//最小化一切,copyright信息
+			output: {
+				comments: false,  // remove all comments
+			},
+			compress: {
+				warnings: false
+			}
+		}),
+		new OptimizeCssAssetsPlugin({
+			assetNameRegExp: /\.css$/g,
+			cssProcessor: require('cssnano'),
+			cssProcessorOptions: { safe: true, discardComments: { removeAll: true } },
+			canPrint: true
+		}),
+		new webpack.ProvidePlugin({
+			React: "react",
+			ReactDom: "react-dom"
+		})
 
 	]
-}
-
+};

@@ -7,17 +7,17 @@ var glob = require('glob');
 var path = require('path');
 
 module.exports = {
-	entry: {
-		index: [
-		    'react-hot-loader/patch',
-		    "./src/root.jsx"
-		]
-	},
-	output: {
-		filename: "[name].js",
-		path: __dirname + "/dist"
-	},
-	resolve: {
+    entry: {
+        index: [
+            'react-hot-loader/patch',
+            "./src/root.jsx"
+        ]
+    },
+    output: {
+        filename: "[name].js",
+        path: __dirname + "/dist"
+    },
+    resolve: {
         extensions: ['.js', '.jsx','.json'],
     },
     devServer: {
@@ -35,24 +35,24 @@ module.exports = {
         hotOnly: true,
         open: true
     },
-	module: {
-		rules: [
-			{
-				test: /\.jsx?/, 
-				use: [
-					{
-						loader: "babel-loader",
-						options: {
-							presets: ['env', 'react'],
-							plugins: ["react-hot-loader/babel"]
-						}
-					}
-				],
-				exclude: /node_modules/
-			},
-			{
-				test: /\.css/, 
-				use: [
+    module: {
+        rules: [
+            {
+                test: /\.jsx?/,
+                use: [
+                    {
+                        loader: "babel-loader",
+                        options: {
+                            presets: ['env', 'react'],
+                            plugins: ["react-hot-loader/babel"]
+                        }
+                    }
+                ],
+                exclude: /node_modules/
+            },
+            {
+                test: /\.css/,
+                use: [
                     {
                         loader: 'style-loader'
                     },
@@ -60,11 +60,11 @@ module.exports = {
                         loader: "css-loader"
                     }
                 ]
-			},
-			{
-				test: /\.scss/, 
-				use: [
-				    {
+            },
+            {
+                test: /\.scss/,
+                use: [
+                    {
                         loader: 'style-loader'
                     },
                     {
@@ -77,11 +77,11 @@ module.exports = {
                         loader: "fast-sass-loader"
                     }
                 ]
-			},
-			{
-				test: /\.less/,
-				use: [
-				    {
+            },
+            {
+                test: /\.less/,
+                use: [
+                    {
                         loader: 'style-loader'
                     },
                     {
@@ -99,14 +99,14 @@ module.exports = {
                         }
                     }
                 ]
-			}
-		]
-	},
-	plugins: [
-	    new webpack.NamedModulesPlugin(),
-		new webpack.HotModuleReplacementPlugin(),
-		new HtmlWebpackPlugin({
-		    template: "./src/template.html",
+            }
+        ]
+    },
+    plugins: [
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+            template: "./src/template.html",
             title: '测试页面',
             inject: true
         }),
@@ -114,8 +114,7 @@ module.exports = {
             React: "react",
             ReactDom: "react-dom"
         })
-	]
-}
+    ]
+};
 
-
-console.log("123", JSON.stringify(process.env.NODE_ENV))
+console.log("123", JSON.stringify(process.env.NODE_ENV));

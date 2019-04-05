@@ -21,7 +21,7 @@ gulp.task("webpack", function(callback) {
             callback();
         }
     })
-})
+});
 
 gulp.task("read", function() {
     var text = fse.readFileSync('./README.md', 'utf8');
@@ -29,7 +29,7 @@ gulp.task("read", function() {
 });
 
 gulp.task("pages", function() {
-    var pages = glob.sync("./src/component/*/");    
+    var pages = glob.sync("./src/component/*/");
     pages.forEach(function(item) {
         console.log("component:" + path.basename(item));
     });
@@ -37,18 +37,18 @@ gulp.task("pages", function() {
 
 gulp.task("html", function() {
     var html = fse.readFileSync('./dist/index.html', 'utf8');
-    var js = glob.sync("./dist/*.js"); 
+    var js = glob.sync("./dist/*.js");
     var css = glob.sync("./dist/*.css");
     js = js.map(function(item) {
         return '<script type="text/javascript" src="' + path.basename(item) + '"></script>';
-    })
+    });
     css = css.map(function(item) {
         return '<link rel="stylesheet" type="text/css" href="' + path.basename(item) + '"/>';
-    })
+    });
     html = html.replace("{css}", css.join("")).replace("{js}", js.join(""));
     fse.outputFileSync('./dist/index.html', html);
-})
+});
 
 gulp.task("default", function(callback) {
     runSequence("clean", "webpack", "read", "copy", "pages", "html", callback);
-})
+});

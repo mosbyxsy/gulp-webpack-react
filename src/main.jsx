@@ -6,14 +6,13 @@ import Footer from './component/footer/index';
 import './main.css';
 
 export default class App extends Component{
-  render() {
-    return (
-      <div className="app-wrap">
-      	<Header/>
-        <Content/>
-        <Footer/>
-      </div>
-    );
-  }
-}
-
+    render() {
+        return (
+            <div className="app-wrap">
+                <Header/>
+                <Content/>
+                <Footer/>
+            </div>
+        );
+    }
+};
